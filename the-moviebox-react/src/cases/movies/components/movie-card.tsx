@@ -1,20 +1,32 @@
+import { useMovies } from "../hooks/use-hook"
 import type { MovieDTO } from "../services/movie.service"
-
 type MovieCardProps = {
     movie: MovieDTO
+
 }
 
-export function MovieCard( {
+export function MovieCard({
     movie
 }: MovieCardProps) {
+
+    const {setSelectedMovie} = useMovies();
+
+    function handleSelect(movie:MovieDTO){
+        setSelectedMovie(movie);
+    }
+
     return (
-        <div className=
-            "bg-color[#222] rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-xl hover:translate-y-1 transition">
-                <img 
-                className= "w-full h-[300px] object-cover" 
+        <div className="bg-[#222] rounded-lg shadow-md overflow-hidden 
+        cursor-pointer hover:shadow-xl hover:translate-y-1 transition
+        "
+        onClick={() => handleSelect(movie)}
+        >
+            <img className="w-full h-[300px] object-cover"
                 src={movie.image}/>
-                <h3 className="px-4 pt-4 text-white text-lg font-semibold">Lilo & Stich</h3>
-                <p className="px-4 pb-4 text-[#ccc] text-sm">2025</p>
+            <h3 className="px-4 pt-4 text-white text-lg font-semibold">{movie.title}
+            </h3>
+            <p className="px-4 pb-4 text-[#ccc] text-sm">{movie.year}
+            </p>
             </div>
-    )
+            )
 }
