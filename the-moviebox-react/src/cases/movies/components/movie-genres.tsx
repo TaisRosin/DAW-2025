@@ -1,8 +1,8 @@
-import { Children, useEffect, useState, type ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import type { MovieDTO } from "../services/movie.service"
 
 type MovieGenresProps = {
-    movie: MovieDTO
+    movie: MovieDTO;
     children: ReactNode;
 }
 
@@ -14,19 +14,19 @@ export function MovieGenres({
     const [genres, setGenres] = useState<string[]>([]); 
 
     useEffect(() => {
-        if (movie && movie.genres) {
-            setGenres(movie.genres.split(',')) 
+        if (movie) {
+            setGenres(movie.genres.split('|')) 
         }
-    }, [movie])
+    }, [movie]); {}
 
     return (
-        <div className="text-sm my-3 flex flex-wrap items-center gap-2">
+        <div className="flex text-sm my-5 mx-0 gap-2">
             {genres.map((genre, index) => (
-                <span key={index} className="bg-white/20 px-3 py-1 rounded-full">
-                    {genre.trim()}
+                <span key={index} className="bg-white/20 rounded-2xl px-3 py-1">
+                    {genre}
                 </span>
             ))}
             {children}
             </div>
             )
-}
+        }

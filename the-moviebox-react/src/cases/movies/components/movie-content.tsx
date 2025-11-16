@@ -1,32 +1,31 @@
 import { useEffect, useState } from "react"
 import { MovieService, type MovieDTO } from "../services/movie.service"
 import { MovieCard } from "./movie-card";
-import { Divide } from "lucide-react";
-import { useMovies } from "../hooks/use-hook";
+import { useMovie } from "../hooks/use-hook";
 
 export function MovieContent() {
 
-    const {setSelectedMovie} = useMovies();
-    const [movies, setMovies] = useState<MovieDTO[]>([])
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const {setSelectedMovie} = useMovie();
+    const [movies, setMovies] = useState<MovieDTO[]>([]);
+    const [isloading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         setIsLoading(true);
 
         MovieService.list().then((result) => {
-            setMovies(result);
+            setMovies(result)
 
-            const index = Math.floor(Math.random() * result.length)
-            setSelectedMovie(result[index])
+            const index = Math.floor(Math.random() * result.length);
+            setSelectedMovie(result[index]);
         })
         .finally(() => {
-            setIsLoading(false);
+            setIsLoading(false)
         });
 
     }, []);
 
     return (
-        isLoading ? (
+        isloading ? (
             <div className="bg-[#1c1c1c]  flex justify-center items-center h-40">
                 <p className="text-2xl text-center text-white">Carregando...</p>
             </div>

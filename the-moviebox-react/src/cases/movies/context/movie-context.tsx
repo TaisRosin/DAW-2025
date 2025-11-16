@@ -3,7 +3,7 @@ import type { MovieDTO } from "../services/movie.service";
 
 type MovieContextProps = {
     selectedMovie: MovieDTO | null;
-    setSelectedMovie: (movie: MovieDTO) => void;
+    setSelectedMovie: (movie: MovieDTO | null) => void
 }
 
 const MovieContext = createContext<MovieContextProps | undefined>(undefined);

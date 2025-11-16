@@ -10,15 +10,15 @@ function App() {
 
   return (
     <>
-    <Header />
+    <Header></Header>
     <main>
       <MovieContextProvider>
-      <Highlight />
-      <Navbar />
-      <MovieContent />
+        <Highlight/>
+        <Navbar/>
+        <MovieContent/>
       </MovieContextProvider>
     </main>
-    <Footer />
+    <Footer></Footer>
     </>
   )
 }
